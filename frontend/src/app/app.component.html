@@ -1,0 +1,10 @@
+<md-toolbar [color]="myColor">
+  <span class="col-md-4">{{title}}</span>
+  <div class="col-md-8">
+    <span class="col-md-3" *ngFor="let item of navList">
+      <!--<a [routerLink]="[item.address]">{{item.text}}</a>-->
+      <button md-button [routerLink]="[item.address]" aria-label="button-label"> {{item.text}} </button>
+    </span>
+  </div>
+</md-toolbar>
+<router-outlet></router-outlet>

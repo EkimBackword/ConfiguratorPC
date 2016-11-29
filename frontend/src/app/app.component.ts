@@ -8,17 +8,20 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'PC Config!';
   navList: INavItem[] = [];
-  myColor = "primary"; 
+  auth: INavItem;
+  myColor = "primary";
+  isAuth:boolean;
   //"primary" | "accent" | "warn"
 
   constructor() {
     this.navList = [
       { address: "/configurator", text: "Сборка" },
-      { address: "/compare", text: "Сравнение" },
       { address: "/examples", text: "Шаблоны" },
-
-      { address: "/auth", text: "Авторизация" }
+      { address: "/compare", text: "Сравнение" },
     ]
+    this.auth = { address: "/auth", text: "Авторизация" };
+    this.isAuth = false;
+    
   }
 }
 

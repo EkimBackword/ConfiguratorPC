@@ -6,6 +6,7 @@ import { AuthService } from './shared/auth.service';
 @Component({
 	selector: 'auth',
 	templateUrl: 'auth.component.html',
+	styleUrls: ['./auth.component.less'],
 	providers: [AuthService]
 })
 

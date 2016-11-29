@@ -1,10 +1,37 @@
-<md-toolbar [color]="myColor">
-  <span class="col-md-4">{{title}}</span>
-  <div class="col-md-8">
-    <span class="col-md-3" *ngFor="let item of navList">
-      <!--<a [routerLink]="[item.address]">{{item.text}}</a>-->
-      <button md-button [routerLink]="[item.address]" aria-label="button-label"> {{item.text}} </button>
-    </span>
+<div class="main-page">
+  <div class="header">
+    <md-toolbar [color]="myColor">
+      <div class="col-md-6">
+        <span *ngFor="let item of navList">
+          <!--<a [routerLink]="[item.address]">{{item.text}}</a>-->
+          <button style="width: 30%" md-raised-button color="accent" [routerLink]="[item.address]" aria-label="button-label"> {{item.text}} </button>
+        </span>
+      </div>
+
+      <div class="col-md-2"></div>
+
+      <div *ngIf="!isAuth" class="col-md-4">
+          <div class="col-md-8">Жарков Михаил</div>
+          <span class="col-md-4">
+            <button md-raised-button color="accent" style="width: 100%" [routerLink]="[auth.address]" aria-label="login"> {{auth.text}} </button>
+          </span>
+      </div>
+      <div *ngIf="isAuth" class="col-md-4">
+        <div class="col-md-8 nav-user"></div>
+        <div class="col-md-4">
+          <span class="col-md-12">
+            <button md-raised-button color="accent" aria-label="logout"> Выход </button>
+          </span>
+        </div>
+      </div>
+    </md-toolbar>
   </div>
-</md-toolbar>
-<router-outlet></router-outlet>
+
+
+
+
+  <div class="content">
+    <router-outlet></router-outlet>
+
+  </div>
+</div>

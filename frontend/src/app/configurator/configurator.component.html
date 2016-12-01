@@ -1,1 +1,105 @@
-<div class="configurator"> Hello ConfiguratorComponent! </div>
+<div class="deviceType">
+    <div class="deviceType--item" *ngFor="let device of devices" (click)="click(device)">
+        <p>{{device.text}}</p>
+    </div>
+</div>
+<div class="devices">
+    <div class="devices--item" *ngFor="let item of items">
+        <md-card class="card">
+            <md-card-subtitle>{{item.model}}</md-card-subtitle>
+            <md-card-title>{{item.brend}}</md-card-title>   
+            <md-card-content>
+                    <p>{{item.type}}</p>
+            </md-card-content>
+        </md-card>
+        <div class="actions">
+            <button md-fab (click)="add(item)">
+                <md-icon class="md-24">add</md-icon>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="PC">
+    <div class="title">
+        <h2>Мой ПК</h2>
+    </div>
+
+
+    <div class="PC--items">
+        <div *ngIf="pc.CPU" class="PC--item">
+            <div class="text">
+                <h3>Процессор:</h3>
+                {{pc.CPU.model}} / {{pc.CPU.type}}
+            </div>
+            <div class="actions">
+                <button md-mini-fab (click)="add(item)">
+                    <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
+                    <!--<md-icon class="md-24">close</md-icon>-->
+                </button>
+            </div>
+        </div>
+        <div *ngIf="pc.motherboard" class="PC--item">
+            <h3>Материнская:</h3>
+            <div>
+                {{pc.motherboard.model}} / {{pc.motherboard.type}}
+            </div>
+        </div>
+        <div *ngIf="pc.RAM" class="PC--item">
+            <h3>Оперативная:</h3>
+            <div>
+                {{pc.RAM.model}} / {{pc.RAM.type}}
+            </div>
+        </div>
+        <div *ngIf="pc.videocard" class="PC--item">
+            <h3>Видеокарта:</h3>
+            <div>
+                {{pc.videocard.model}} / {{pc.videocard.type}}
+            </div>
+        </div>
+        <div *ngIf="pc.Power" class="PC--item">
+            <h3>Блок:</h3>
+            <div>
+                {{pc.Power.model}} / {{pc.Power.type}}
+            </div>
+        </div>
+        <div *ngIf="pc.HDD" class="PC--item">
+            <h3>Жёсткий:</h3>
+            <div>
+                {{pc.HDD.model}} / {{pc.HDD.type}}
+            </div>
+        </div>
+        <div *ngIf="pc.body" class="PC--item">
+            <h3>Корпус:</h3>
+            <div>
+                {{pc.body.model}} / {{pc.body.type}}
+            </div>
+        </div>
+        <div *ngIf="pc.coolingSystem" class="PC--item">
+            <h3>Охлаждение:</h3>
+            <div>
+                {{pc.coolingSystem.model}} / {{pc.coolingSystem.type}}
+            </div>
+        </div>
+        <div *ngIf="pc.accessories" class="PC--item">
+            <h3>Аксессуары:</h3>
+            <div>
+                {{pc.accessories.model}} / {{pc.accessories.type}}
+            </div>
+        </div>
+    </div>
+
+
+    
+
+
+    <div class="bottom">
+        <div class="price">
+            <h3>Цена</h3>
+            <p>4000 р.</p>
+        </div>
+        <div class="actions">
+            <button md-raised-button color="accent" style="width: 90%; float: left; margin: 2px auto;" aria-label="z"> Заказать </button>
+            <button md-raised-button color="accent" style="width: 90%; float: left; margin: 2px auto;" aria-label="h"> Создать шаблон </button>
+        </div>
+    </div>
+</div>

@@ -2,34 +2,20 @@
 
 /*@import './purple-green.css';*/
 @import './deeppurple-amber.css';
-
-.main{
+body, html{
     height:100%;
-    display:-ms-flexbox;
-    display: flex;
-    display: -webkit-flex;
-    -ms-flex-direction: column;
-        flex-direction: column;
-    -webkit-flex-direction: column;
-    -webkit-align-content: stretch;
-        -ms-flex-line-pack: stretch;
-            align-content: stretch;
-    div.content {
-            position:relative;
-            display:-ms-flexbox;
-            display: flex;
-            display: -webkit-flex;
-            background:lightgreen;
-            -webkit-flex: 1;
-            -ms-flex:1;
-                flex:1;
-        }
+}
+.root-class {
+    height:100%;
 }
 
-.main-aria {
-    position:relative;
-    background:lightgreen;
-    -webkit-flex: 1;
-    -ms-flex:1;
-        flex:1;
+.main-page{
+    height:100%;
+    .header {
+        height: 10%;
+    }
+    .content {
+        position:relative;
+        height: 90%
+    }
 }

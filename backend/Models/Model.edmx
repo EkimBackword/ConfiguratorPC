@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище DatabaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Characteristic">
+          <Key>
+            <PropertyRef Name="IdCharacteristic" />
+          </Key>
+          <Property Name="IdCharacteristic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value1" Type="nvarchar(max)" />
+          <Property Name="Value2" Type="nvarchar(max)" />
+          <Property Name="Value3" Type="nvarchar(max)" />
+          <Property Name="Value4" Type="nvarchar(max)" />
+          <Property Name="Value5" Type="nvarchar(max)" />
+          <Property Name="Value6" Type="nvarchar(max)" />
+          <Property Name="Value7" Type="nvarchar(max)" />
+          <Property Name="Value8" Type="nvarchar(max)" />
+          <Property Name="Value9" Type="nvarchar(max)" />
+          <Property Name="Value10" Type="nvarchar(max)" />
+          <Property Name="Value11" Type="nvarchar(max)" />
+          <Property Name="Value12" Type="nvarchar(max)" />
+          <Property Name="Value13" Type="nvarchar(max)" />
+          <Property Name="Value14" Type="nvarchar(max)" />
+          <Property Name="Value15" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="IdDevice" />
+          </Key>
+          <Property Name="IdDevice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEntity" Type="int" Nullable="false" />
+          <Property Name="IdCharacteristic" Type="int" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeviceToSocket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSocket" Type="int" Nullable="false" />
+          <Property Name="IdDevice" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeviceToType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDevice" Type="int" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfEntity" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name1" Type="nvarchar(max)" />
+          <Property Name="Name2" Type="nvarchar(max)" />
+          <Property Name="Name3" Type="nvarchar(max)" />
+          <Property Name="Name4" Type="nvarchar(max)" />
+          <Property Name="Name5" Type="nvarchar(max)" />
+          <Property Name="Name6" Type="nvarchar(max)" />
+          <Property Name="Name7" Type="nvarchar(max)" />
+          <Property Name="Name8" Type="nvarchar(max)" />
+          <Property Name="Name9" Type="nvarchar(max)" />
+          <Property Name="Name10" Type="nvarchar(max)" />
+          <Property Name="Name11" Type="nvarchar(max)" />
+          <Property Name="Name12" Type="nvarchar(max)" />
+          <Property Name="Name13" Type="nvarchar(max)" />
+          <Property Name="Name14" Type="nvarchar(max)" />
+          <Property Name="Name15" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sockets">
+          <Key>
+            <PropertyRef Name="IdSocket" />
+          </Key>
+          <Property Name="IdSocket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Devices__IdChara__3C69FB99">
+          <End Role="Characteristic" Type="Self.Characteristic" Multiplicity="1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characteristic">
+              <PropertyRef Name="IdCharacteristic" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdCharacteristic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Devices__IdEntit__3F466844">
+          <End Role="Entities" Type="Self.Entities" Multiplicity="1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdEntity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeviceToS__IdDev__48CFD27E">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="DeviceToSocket" Type="Self.DeviceToSocket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="DeviceToSocket">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeviceToS__IdSoc__49C3F6B7">
+          <End Role="Sockets" Type="Self.Sockets" Multiplicity="1" />
+          <End Role="DeviceToSocket" Type="Self.DeviceToSocket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sockets">
+              <PropertyRef Name="IdSocket" />
+            </Principal>
+            <Dependent Role="DeviceToSocket">
+              <PropertyRef Name="IdSocket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeviceToT__IdDev__4D94879B">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="DeviceToType" Type="Self.DeviceToType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="DeviceToType">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeviceToT__IdTyp__4E88ABD4">
+          <End Role="Types" Type="Self.Types" Multiplicity="1" />
+          <End Role="DeviceToType" Type="Self.DeviceToType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="DeviceToType">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DatabaseModelContainer">
+          <EntitySet Name="Characteristic" EntityType="Self.Characteristic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceToSocket" EntityType="Self.DeviceToSocket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceToType" EntityType="Self.DeviceToType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entities" EntityType="Self.Entities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sockets" EntityType="Self.Sockets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Devices__IdChara__3C69FB99" Association="Self.FK__Devices__IdChara__3C69FB99">
+            <End Role="Characteristic" EntitySet="Characteristic" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Devices__IdEntit__3F466844" Association="Self.FK__Devices__IdEntit__3F466844">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeviceToS__IdDev__48CFD27E" Association="Self.FK__DeviceToS__IdDev__48CFD27E">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="DeviceToSocket" EntitySet="DeviceToSocket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeviceToS__IdSoc__49C3F6B7" Association="Self.FK__DeviceToS__IdSoc__49C3F6B7">
+            <End Role="Sockets" EntitySet="Sockets" />
+            <End Role="DeviceToSocket" EntitySet="DeviceToSocket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeviceToT__IdDev__4D94879B" Association="Self.FK__DeviceToT__IdDev__4D94879B">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="DeviceToType" EntitySet="DeviceToType" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeviceToT__IdTyp__4E88ABD4" Association="Self.FK__DeviceToT__IdTyp__4E88ABD4">
+            <End Role="Types" EntitySet="Types" />
+            <End Role="DeviceToType" EntitySet="DeviceToType" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Characteristic">
+          <Key>
+            <PropertyRef Name="IdCharacteristic" />
+          </Key>
+          <Property Name="IdCharacteristic" Type="Int32" Nullable="false" />
+          <Property Name="Value1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__Devices__IdChara__1920BF5C" FromRole="Characteristic" ToRole="Devices" />
+          <Property Name="Value11" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value12" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value13" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value14" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value15" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="IdDevice" />
+          </Key>
+          <Property Name="IdDevice" Type="Int32" Nullable="false" />
+          <Property Name="IdEntity" Type="Int32" Nullable="false" />
+          <Property Name="IdCharacteristic" Type="Int32" Nullable="false" />
+          <Property Name="BrandName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Characteristic" Relationship="Self.FK__Devices__IdChara__1920BF5C" FromRole="Devices" ToRole="Characteristic" />
+          <NavigationProperty Name="Entities" Relationship="Self.FK__Devices__IdEntit__182C9B23" FromRole="Devices" ToRole="Entities" />
+          <NavigationProperty Name="DeviceToSocket" Relationship="Self.FK__DeviceToS__IdDev__239E4DCF" FromRole="Devices" ToRole="DeviceToSocket" />
+          <NavigationProperty Name="DeviceToType" Relationship="Self.FK__DeviceToT__IdDev__25869641" FromRole="Devices" ToRole="DeviceToType" />
+        </EntityType>
+        <EntityType Name="Entities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="NameOfEntity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__Devices__IdEntit__182C9B23" FromRole="Entities" ToRole="Devices" />
+          <Property Name="Name11" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name12" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name13" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name14" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name15" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sockets">
+          <Key>
+            <PropertyRef Name="IdSocket" />
+          </Key>
+          <Property Name="IdSocket" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DeviceToSocket" Relationship="Self.FK__DeviceToS__IdSoc__22AA2996" FromRole="Sockets" ToRole="DeviceToSocket" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DeviceToType" Relationship="Self.FK__DeviceToT__IdTyp__267ABA7A" FromRole="Types" ToRole="DeviceToType" />
+        </EntityType>
+        <EntityType Name="DeviceToSocket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="IdSocket" Type="Int32" Nullable="false" />
+          <Property Name="IdDevice" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__DeviceToS__IdDev__239E4DCF" FromRole="DeviceToSocket" ToRole="Devices" />
+          <NavigationProperty Name="Sockets" Relationship="Self.FK__DeviceToS__IdSoc__22AA2996" FromRole="DeviceToSocket" ToRole="Sockets" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="DeviceToType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="IdDevice" Type="Int32" Nullable="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__DeviceToT__IdDev__25869641" FromRole="DeviceToType" ToRole="Devices" />
+          <NavigationProperty Name="Types" Relationship="Self.FK__DeviceToT__IdTyp__267ABA7A" FromRole="DeviceToType" ToRole="Types" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK__Devices__IdChara__1920BF5C">
+          <End Role="Characteristic" Type="Self.Characteristic" Multiplicity="1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characteristic">
+              <PropertyRef Name="IdCharacteristic" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdCharacteristic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Devices__IdEntit__182C9B23">
+          <End Role="Entities" Type="Self.Entities" Multiplicity="1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="IdEntity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeviceToS__IdDev__239E4DCF">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="DeviceToSocket" Type="Self.DeviceToSocket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="DeviceToSocket">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeviceToT__IdDev__25869641">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="DeviceToType" Type="Self.DeviceToType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="DeviceToType">
+              <PropertyRef Name="IdDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeviceToS__IdSoc__22AA2996">
+          <End Role="Sockets" Type="Self.Sockets" Multiplicity="1" />
+          <End Role="DeviceToSocket" Type="Self.DeviceToSocket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sockets">
+              <PropertyRef Name="IdSocket" />
+            </Principal>
+            <Dependent Role="DeviceToSocket">
+              <PropertyRef Name="IdSocket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeviceToT__IdTyp__267ABA7A">
+          <End Role="Types" Type="Self.Types" Multiplicity="1" />
+          <End Role="DeviceToType" Type="Self.DeviceToType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="DeviceToType">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Characteristic" EntityType="Self.Characteristic" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" />
+          <EntitySet Name="Entities" EntityType="Self.Entities" />
+          <EntitySet Name="Sockets" EntityType="Self.Sockets" />
+          <EntitySet Name="Types" EntityType="Self.Types" />
+          <EntitySet Name="DeviceToSocket" EntityType="Self.DeviceToSocket" />
+          <EntitySet Name="DeviceToType" EntityType="Self.DeviceToType" />
+          <AssociationSet Name="FK__Devices__IdChara__1920BF5C" Association="Self.FK__Devices__IdChara__1920BF5C">
+            <End Role="Characteristic" EntitySet="Characteristic" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Devices__IdEntit__182C9B23" Association="Self.FK__Devices__IdEntit__182C9B23">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeviceToS__IdDev__239E4DCF" Association="Self.FK__DeviceToS__IdDev__239E4DCF">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="DeviceToSocket" EntitySet="DeviceToSocket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeviceToT__IdDev__25869641" Association="Self.FK__DeviceToT__IdDev__25869641">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="DeviceToType" EntitySet="DeviceToType" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeviceToS__IdSoc__22AA2996" Association="Self.FK__DeviceToS__IdSoc__22AA2996">
+            <End Role="Sockets" EntitySet="Sockets" />
+            <End Role="DeviceToSocket" EntitySet="DeviceToSocket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeviceToT__IdTyp__267ABA7A" Association="Self.FK__DeviceToT__IdTyp__267ABA7A">
+            <End Role="Types" EntitySet="Types" />
+            <End Role="DeviceToType" EntitySet="DeviceToType" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DatabaseModelContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="Characteristic">
+            <EntityTypeMapping TypeName="DatabaseModel.Characteristic">
+              <MappingFragment StoreEntitySet="Characteristic">
+                <ScalarProperty Name="Value15" ColumnName="Value15" />
+                <ScalarProperty Name="Value14" ColumnName="Value14" />
+                <ScalarProperty Name="Value13" ColumnName="Value13" />
+                <ScalarProperty Name="Value12" ColumnName="Value12" />
+                <ScalarProperty Name="Value11" ColumnName="Value11" />
+                <ScalarProperty Name="IdCharacteristic" ColumnName="IdCharacteristic" />
+                <ScalarProperty Name="Value1" ColumnName="Value1" />
+                <ScalarProperty Name="Value2" ColumnName="Value2" />
+                <ScalarProperty Name="Value3" ColumnName="Value3" />
+                <ScalarProperty Name="Value4" ColumnName="Value4" />
+                <ScalarProperty Name="Value5" ColumnName="Value5" />
+                <ScalarProperty Name="Value6" ColumnName="Value6" />
+                <ScalarProperty Name="Value7" ColumnName="Value7" />
+                <ScalarProperty Name="Value8" ColumnName="Value8" />
+                <ScalarProperty Name="Value9" ColumnName="Value9" />
+                <ScalarProperty Name="Value10" ColumnName="Value10" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="DatabaseModel.Devices">
+              <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+                <ScalarProperty Name="IdEntity" ColumnName="IdEntity" />
+                <ScalarProperty Name="IdCharacteristic" ColumnName="IdCharacteristic" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entities">
+            <EntityTypeMapping TypeName="DatabaseModel.Entities">
+              <MappingFragment StoreEntitySet="Entities">
+                <ScalarProperty Name="Name15" ColumnName="Name15" />
+                <ScalarProperty Name="Name14" ColumnName="Name14" />
+                <ScalarProperty Name="Name13" ColumnName="Name13" />
+                <ScalarProperty Name="Name12" ColumnName="Name12" />
+                <ScalarProperty Name="Name11" ColumnName="Name11" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NameOfEntity" ColumnName="NameOfEntity" />
+                <ScalarProperty Name="Name1" ColumnName="Name1" />
+                <ScalarProperty Name="Name2" ColumnName="Name2" />
+                <ScalarProperty Name="Name3" ColumnName="Name3" />
+                <ScalarProperty Name="Name4" ColumnName="Name4" />
+                <ScalarProperty Name="Name5" ColumnName="Name5" />
+                <ScalarProperty Name="Name6" ColumnName="Name6" />
+                <ScalarProperty Name="Name7" ColumnName="Name7" />
+                <ScalarProperty Name="Name8" ColumnName="Name8" />
+                <ScalarProperty Name="Name9" ColumnName="Name9" />
+                <ScalarProperty Name="Name10" ColumnName="Name10" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sockets">
+            <EntityTypeMapping TypeName="DatabaseModel.Sockets">
+              <MappingFragment StoreEntitySet="Sockets">
+                <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="DatabaseModel.Types">
+              <MappingFragment StoreEntitySet="Types">
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceToSocket">
+            <EntityTypeMapping TypeName="DatabaseModel.DeviceToSocket">
+              <MappingFragment StoreEntitySet="DeviceToSocket">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+                <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceToType">
+            <EntityTypeMapping TypeName="DatabaseModel.DeviceToType">
+              <MappingFragment StoreEntitySet="DeviceToType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

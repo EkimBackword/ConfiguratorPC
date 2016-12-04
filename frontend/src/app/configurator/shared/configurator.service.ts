@@ -10,7 +10,7 @@ export class ConfiguratorService {
 
 	constructor(private http: Http) { }
 
-	getList(): Observable<Configurator[]> {
-		return this.http.get('/api/list').map(res => res.json() as Configurator[]);
+	getList(): Observable<any> {
+		return this.http.get('http://localhost:27835/api/CPU').map(res => res.json());
 	}
 }

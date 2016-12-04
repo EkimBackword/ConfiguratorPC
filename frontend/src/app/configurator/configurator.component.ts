@@ -44,6 +44,15 @@ export class ConfiguratorComponent implements OnInit {
 	 }
 
 	ngOnInit() {
+		this.configuratorService.getList()
+		.subscribe(
+			(res) => {
+				console.log(res);
+			},
+			(err) => {
+				console.log(err);	
+			}
+		);
 	}
 
 	click(item) {

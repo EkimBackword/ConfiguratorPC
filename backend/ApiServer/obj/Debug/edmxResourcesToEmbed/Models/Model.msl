@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DatabaseModelContainer" CdmEntityContainer="DatabaseEntities">
+    <EntitySetMapping Name="Characteristic">
+      <EntityTypeMapping TypeName="DatabaseModel.Characteristic">
+        <MappingFragment StoreEntitySet="Characteristic">
+          <ScalarProperty Name="Value15" ColumnName="Value15" />
+          <ScalarProperty Name="Value14" ColumnName="Value14" />
+          <ScalarProperty Name="Value13" ColumnName="Value13" />
+          <ScalarProperty Name="Value12" ColumnName="Value12" />
+          <ScalarProperty Name="Value11" ColumnName="Value11" />
+          <ScalarProperty Name="IdCharacteristic" ColumnName="IdCharacteristic" />
+          <ScalarProperty Name="Value1" ColumnName="Value1" />
+          <ScalarProperty Name="Value2" ColumnName="Value2" />
+          <ScalarProperty Name="Value3" ColumnName="Value3" />
+          <ScalarProperty Name="Value4" ColumnName="Value4" />
+          <ScalarProperty Name="Value5" ColumnName="Value5" />
+          <ScalarProperty Name="Value6" ColumnName="Value6" />
+          <ScalarProperty Name="Value7" ColumnName="Value7" />
+          <ScalarProperty Name="Value8" ColumnName="Value8" />
+          <ScalarProperty Name="Value9" ColumnName="Value9" />
+          <ScalarProperty Name="Value10" ColumnName="Value10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devices">
+      <EntityTypeMapping TypeName="DatabaseModel.Devices">
+        <MappingFragment StoreEntitySet="Devices">
+          <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+          <ScalarProperty Name="IdEntity" ColumnName="IdEntity" />
+          <ScalarProperty Name="IdCharacteristic" ColumnName="IdCharacteristic" />
+          <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entities">
+      <EntityTypeMapping TypeName="DatabaseModel.Entities">
+        <MappingFragment StoreEntitySet="Entities">
+          <ScalarProperty Name="Name15" ColumnName="Name15" />
+          <ScalarProperty Name="Name14" ColumnName="Name14" />
+          <ScalarProperty Name="Name13" ColumnName="Name13" />
+          <ScalarProperty Name="Name12" ColumnName="Name12" />
+          <ScalarProperty Name="Name11" ColumnName="Name11" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameOfEntity" ColumnName="NameOfEntity" />
+          <ScalarProperty Name="Name1" ColumnName="Name1" />
+          <ScalarProperty Name="Name2" ColumnName="Name2" />
+          <ScalarProperty Name="Name3" ColumnName="Name3" />
+          <ScalarProperty Name="Name4" ColumnName="Name4" />
+          <ScalarProperty Name="Name5" ColumnName="Name5" />
+          <ScalarProperty Name="Name6" ColumnName="Name6" />
+          <ScalarProperty Name="Name7" ColumnName="Name7" />
+          <ScalarProperty Name="Name8" ColumnName="Name8" />
+          <ScalarProperty Name="Name9" ColumnName="Name9" />
+          <ScalarProperty Name="Name10" ColumnName="Name10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sockets">
+      <EntityTypeMapping TypeName="DatabaseModel.Sockets">
+        <MappingFragment StoreEntitySet="Sockets">
+          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="DatabaseModel.Types">
+        <MappingFragment StoreEntitySet="Types">
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceToSocket">
+      <EntityTypeMapping TypeName="DatabaseModel.DeviceToSocket">
+        <MappingFragment StoreEntitySet="DeviceToSocket">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdSocket" ColumnName="IdSocket" />
+          <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceToType">
+      <EntityTypeMapping TypeName="DatabaseModel.DeviceToType">
+        <MappingFragment StoreEntitySet="DeviceToType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

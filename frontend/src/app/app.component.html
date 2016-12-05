@@ -11,7 +11,12 @@
       <div class="col-md-2"></div>
 
       <div *ngIf="!isAuth" class="col-md-4">
-          <div class="col-md-8">Жарков Михаил</div>
+          <div class="col-md-4">
+            <div>
+              <input type="file" (change)="onChange($event)">
+            </div>
+          </div>
+          <div class="col-md-4">Жарков Михаил</div>
           <span class="col-md-4">
             <button md-raised-button color="accent" style="width: 100%; height: 100%" [routerLink]="[auth.address]" aria-label="login"> {{auth.text}} </button>
           </span>

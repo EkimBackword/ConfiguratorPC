@@ -105,7 +105,6 @@ C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\bin\System.Web.Http.WebHost
 C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\bin\ru\System.Net.Http.Formatting.resources.dll
 C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\bin\ru\System.Web.Http.resources.dll
 C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\bin\ru\System.Web.Http.WebHost.resources.dll
-C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\obj\Debug\ApiServer.csprojResolveAssemblyReference.cache
 C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\obj\Debug\ApiServer.dll
 C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\obj\Debug\ApiServer.pdb
 C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\bin\System.Web.Cors.dll

@@ -38,7 +38,7 @@ namespace ApiServer
 
             var sheet = priceList.GetSheet(sheetName);
 
-            for (int row = 12; row <= sheet.LastRowNum; row++)
+            for (int row = 1647; row <= sheet.LastRowNum; row++)
             {
                 var currentRow = sheet.GetRow(row);
 
@@ -71,7 +71,7 @@ namespace ApiServer
                     if (column == 0 && !stringCellValue.Equals("КОМПЛЕКТУЮЩИЕ ДЛЯ КОМПЬЮТЕРОВ")) return;
                     if (column == 1)
                     {
-                        if (stringCellValue.Equals("Аксессуары") || stringCellValue.Equals("Кабели и шлейфы") || stringCellValue.Equals("Устройства охлаждения") || stringCellValue.Equals("Товар под заказ"))
+                        if (stringCellValue.Equals("Аксессуары") || stringCellValue.Equals("Кабели и шлейфы") || stringCellValue.Equals("Товар под заказ"))
                         {
                             isToDB = false;
                             break;
@@ -161,7 +161,7 @@ namespace ApiServer
 
                         db.SaveChanges();        
                     }
-
+                    
                     Characteristic c = new Characteristic
                     {
                         Value1 = w.ToString(),
@@ -965,6 +965,70 @@ namespace ApiServer
                     db.SaveChanges();
 
                     SetTypesForDevice(brend, code, group3, 1);
+                }
+                else if (group2.Equals("Устройства охлаждения"))
+                {
+                    string type = "Устройство охлаждения";
+
+                    MatchCollection s = null;
+
+                    string p = Regex.Match(info, @"Soc-(\w+/)*\w+(/?)").ToString();
+                    p = Regex.Replace(p, "Soc-", "");
+                    s = Regex.Matches(p, @"\w+");
+
+                    //
+                    if(!(group3.Equals("HDD") || group3.Equals("Другое") || group3.Equals("Thermopaste")))
+                    foreach(var si in s)
+                    {
+                        CheckType("Socket-" + si.ToString());
+                    }
+                    
+
+                    if (db.Entities.Count(x => x.NameOfEntity == type) == 0)
+                    {
+                        Entities e = new Entities
+                        {
+                            NameOfEntity = type,
+                            Name1 = "Info",
+                            Name2 = "Price",
+                            Name3 = "Volume",
+                            Name4 = "Weight"
+                        };
+
+                        db.Entities.Add(e);
+
+                        db.SaveChanges();
+                    }
+
+                    Characteristic c = new Characteristic
+                    {
+                        Value1 = info,
+                        Value2 = price,
+                        Value3 = volume,
+                        Value4 = weight
+                    };
+
+                    db.Characteristic.Add(c);
+
+                    db.SaveChanges();
+
+                    Devices d = new Devices
+                    {
+                        IdEntity = db.Entities.First(x => x.NameOfEntity == type).Id,
+                        IdCharacteristic = db.Characteristic.First(x => x.Value1 == info).IdCharacteristic,
+                        BrandName = brend,
+                        Model = code
+                    };
+
+                    db.Devices.Add(d);
+
+                    db.SaveChanges();
+
+                    if (!(group3.Equals("HDD") || group3.Equals("Другое") || group3.Equals("Thermopaste")))
+                    foreach (var si in s)
+                    {
+                        SetTypesForDevice(brend, code, "Socket-" + si.ToString(), 1);
+                    }
                 }
             }
         }

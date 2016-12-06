@@ -112,3 +112,4 @@ C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\bin\System.Web.Http.Cors.dl
 C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\bin\System.Web.Http.Cors.xml
 C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\bin\ru\EntityFramework.resources.dll
 C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\bin\ru\EntityFramework.SqlServer.resources.dll
+C:\A_MY_DOC\Angular\ConfiguratorPC\backend\ApiServer\obj\Debug\ApiServer.csprojResolveAssemblyReference.cache

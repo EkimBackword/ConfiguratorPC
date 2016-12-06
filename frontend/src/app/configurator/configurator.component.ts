@@ -14,6 +14,7 @@ export class ConfiguratorComponent implements OnInit {
 	configurator: Configurator[] = [];
 	devices: any[];
 	items: any[];
+	price: number;
 	pc = {
 		CPU: null,
 		motherboard: null,
@@ -41,30 +42,81 @@ export class ConfiguratorComponent implements OnInit {
 
 		]
 		this.items = [];
+		this.price = 0;
 	 }
 
 	ngOnInit() {
-		this.configuratorService.getList()
-		.subscribe(
-			(res) => {
-				console.log(res);
-			},
-			(err) => {
-				console.log(err);	
-			}
-		);
+		
 	}
 
 	click(item) {
-		this.curType = item.type;
 		this.items = [];
-		for(let i = 0; i < 50; i++) {
-			let tmp = { model: "Модель " + item.text + i, type: item.type, brend: "Бренд " + i };
-			this.items.push(tmp);
-		}
+		this.configuratorService.getNames(item.type)
+			.subscribe(
+				(res) => {
+					this.curType = item.type;
+					this.setList(item.type, res);
+				},
+				(err) => {
+					console.log(err);	
+				}
+			);
+	}
+
+	setList(type, names) {
+		let pcDATA = {
+			CPU: null,
+			motherboard: null,
+			RAM: null,
+			videocard: null,
+			Power: null,
+			HDD: null,
+			body: null,
+			coolingSystem: null,
+			accessories: null
+		};
+
+		pcDATA.CPU = this.pc.CPU ? 						parseInt(this.pc.CPU.id) 			: null;
+		pcDATA.motherboard = this.pc.motherboard ? 		parseInt(this.pc.motherboard.id) 	: null;
+		pcDATA.RAM = this.pc.RAM ? 						parseInt(this.pc.RAM.id) 			: null;
+		pcDATA.videocard = this.pc.videocard ? 			parseInt(this.pc.videocard.id)		: null;
+		pcDATA.Power = this.pc.Power ? 					parseInt(this.pc.Power.id) 			: null;
+		pcDATA.HDD = this.pc.HDD ? 						parseInt(this.pc.HDD.id)			: null;
+		pcDATA.body = this.pc.body ? 					parseInt(this.pc.body.id) 			: null;
+		pcDATA.coolingSystem = this.pc.coolingSystem ? 	parseInt(this.pc.coolingSystem.id) 	: null;
+		pcDATA.accessories = this.pc.accessories ? 		parseInt(this.pc.accessories.id) 	: null;
+
+		this.configuratorService.getList(type, pcDATA)
+			.subscribe(
+				(res: any[]) => {
+					res.forEach((val) => {
+						let tmp = { 
+							id: val[0],
+							model: "Модель: " + val[1], 
+							type: type, 
+							brend: "Бренд " + val[2],
+							text: "",
+							price: 0
+						};
+						names.forEach((name, key) => {
+							if(name != null && name != "Price") {
+								tmp.text += name + ": " + val[key + 3] + "; ";
+							}
+							if(name == "Price") {
+								tmp.price = parseInt(val[key + 3]);
+							}
+						})
+						this.items.push(tmp);
+					});
+				},
+				(err) => {
+					console.log(err);	
+				}
+			);
 	}
 
 	add(item) {
+		this.price += item.price;
 		this.pc[this.curType] = item;
 		this.items = [];
 		this.curType = null;

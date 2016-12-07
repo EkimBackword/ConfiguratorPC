@@ -76,16 +76,17 @@ export class ConfiguratorComponent implements OnInit {
 			accessories: null
 		};
 
-		pcDATA.CPU = this.pc.CPU ? 						parseInt(this.pc.CPU.id) 			: null;
-		pcDATA.motherboard = this.pc.motherboard ? 		parseInt(this.pc.motherboard.id) 	: null;
-		pcDATA.RAM = this.pc.RAM ? 						parseInt(this.pc.RAM.id) 			: null;
-		pcDATA.videocard = this.pc.videocard ? 			parseInt(this.pc.videocard.id)		: null;
-		pcDATA.Power = this.pc.Power ? 					parseInt(this.pc.Power.id) 			: null;
-		pcDATA.HDD = this.pc.HDD ? 						parseInt(this.pc.HDD.id)			: null;
-		pcDATA.body = this.pc.body ? 					parseInt(this.pc.body.id) 			: null;
-		pcDATA.coolingSystem = this.pc.coolingSystem ? 	parseInt(this.pc.coolingSystem.id) 	: null;
-		pcDATA.accessories = this.pc.accessories ? 		parseInt(this.pc.accessories.id) 	: null;
+		pcDATA.CPU = this.pc.CPU ? 						parseInt(this.pc.CPU.id) 			: -1;
+		pcDATA.motherboard = this.pc.motherboard ? 		parseInt(this.pc.motherboard.id) 	: -1;
+		pcDATA.RAM = this.pc.RAM ? 						parseInt(this.pc.RAM.id) 			: -1;
+		pcDATA.videocard = this.pc.videocard ? 			parseInt(this.pc.videocard.id)		: -1;
+		pcDATA.Power = this.pc.Power ? 					parseInt(this.pc.Power.id) 			: -1;
+		pcDATA.HDD = this.pc.HDD ? 						parseInt(this.pc.HDD.id)			: -1;
+		pcDATA.body = this.pc.body ? 					parseInt(this.pc.body.id) 			: -1;
+		pcDATA.coolingSystem = this.pc.coolingSystem ? 	parseInt(this.pc.coolingSystem.id) 	: -1;
+		pcDATA.accessories = this.pc.accessories ? 		parseInt(this.pc.accessories.id) 	: -1;
 
+		
 		this.configuratorService.getList(type, pcDATA)
 			.subscribe(
 				(res: any[]) => {

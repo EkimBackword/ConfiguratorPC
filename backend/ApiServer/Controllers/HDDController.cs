@@ -47,6 +47,7 @@ namespace ApiServer.Controllers
                     characteristic.IdCharacteristic == device.IdCharacteristic
                     select new
                     {
+                        device.IdDevice,
                         device.BrandName,
                         device.Model,
                         characteristic.Value1,
@@ -61,6 +62,7 @@ namespace ApiServer.Controllers
             foreach (var i in v)
             {
                 List<string> d = new List<string>();
+                d.Add("" + i.IdDevice);
                 d.Add(i.BrandName);
                 d.Add(i.Model);
                 d.Add(i.Value1);

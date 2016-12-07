@@ -1,9 +1,11 @@
 ﻿using ApiServer.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace ApiServer.Controllers
@@ -37,7 +39,7 @@ namespace ApiServer.Controllers
         }
 
         // POST: api/CPU
-        public IEnumerable<IEnumerable<string>> Post([FromBody]string value)
+        public IEnumerable<IEnumerable<string>> Post(JsonDataModel value)
         {
             var v = from entity in db.Entities
                     from device in db.Devices

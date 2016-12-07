@@ -27,6 +27,7 @@ export class ConfiguratorComponent implements OnInit {
 		accessories: null
 	};
 	curType: string;
+	isLoading: boolean;
 
 	constructor(private configuratorService: ConfiguratorService) {
 		this.devices = [
@@ -43,6 +44,7 @@ export class ConfiguratorComponent implements OnInit {
 		]
 		this.items = [];
 		this.price = 0;
+		this.isLoading = false;
 	 }
 
 	ngOnInit() {
@@ -50,6 +52,7 @@ export class ConfiguratorComponent implements OnInit {
 	}
 
 	click(item) {
+		this.isLoading = true;
 		this.items = [];
 		this.configuratorService.getNames(item.type)
 			.subscribe(
@@ -109,6 +112,7 @@ export class ConfiguratorComponent implements OnInit {
 						})
 						this.items.push(tmp);
 					});
+					this.isLoading = false;
 				},
 				(err) => {
 					console.log(err);	
@@ -117,9 +121,22 @@ export class ConfiguratorComponent implements OnInit {
 	}
 
 	add(item) {
-		this.price += item.price;
 		this.pc[this.curType] = item;
 		this.items = [];
 		this.curType = null;
+		this.culcPrice();
+	}
+
+	del(name) {
+		this.pc[name] = null;
+		this.culcPrice();
+	}
+
+	culcPrice() {
+		this.price = 0;
+		for (var key in this.pc) {
+			if(this.pc[key] != null)
+				this.price += this.pc[key].price;
+		}
 	}
 }

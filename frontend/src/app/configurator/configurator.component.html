@@ -4,6 +4,9 @@
     </div>
 </div>
 <div class="devices">
+    <md-card class="card" *ngIf="isLoading">
+        <md-card-title>Загрузка...</md-card-title>   
+    </md-card>
     <div class="devices--item" *ngFor="let item of items">
         <md-card class="card">
             <md-card-subtitle>{{item.model}} ({{item.type}})</md-card-subtitle>
@@ -37,7 +40,7 @@
             </div>
 
             <div class="actions">
-                <button md-mini-fab (click)="del(pc.CPU)">
+                <button md-mini-fab (click)="del('CPU')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
@@ -52,7 +55,7 @@
             </div>
 
             <div class="actions">
-                <button md-mini-fab (click)="del(pc.motherboard)">
+                <button md-mini-fab (click)="del('motherboard')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
@@ -66,7 +69,7 @@
                 </div>
             </div>
             <div class="actions">
-                <button md-mini-fab (click)="del(pc.RAM)">
+                <button md-mini-fab (click)="del('RAM')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
@@ -80,7 +83,7 @@
                 </div>
             </div>
             <div class="actions">
-                <button md-mini-fab (click)="del(pc.videocard)">
+                <button md-mini-fab (click)="del('videocard')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
@@ -94,7 +97,7 @@
                 </div>
             </div>
             <div class="actions">
-                <button md-mini-fab (click)="del(pc.Power)">
+                <button md-mini-fab (click)="del('Power')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
@@ -108,7 +111,7 @@
                 </div>
             </div>
             <div class="actions">
-                <button md-mini-fab (click)="del(pc.HDD)">
+                <button md-mini-fab (click)="del('HDD')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
@@ -122,7 +125,7 @@
                 </div>
             </div>
             <div class="actions">
-                <button md-mini-fab (click)="del(pc.body)">
+                <button md-mini-fab (click)="del('body')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
@@ -136,7 +139,7 @@
                 </div>
             </div>
             <div class="actions">
-                <button md-mini-fab (click)="del(pc.coolingSystem)">
+                <button md-mini-fab (click)="del('coolingSystem')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
@@ -150,7 +153,7 @@
                 </div>
             </div>
             <div class="actions">
-                <button md-mini-fab (click)="del(pc.accessories)">
+                <button md-mini-fab (click)="del('accessories')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>

@@ -38,7 +38,7 @@ namespace ApiServer
 
             var sheet = priceList.GetSheet(sheetName);
 
-            for (int row = 1647; row <= sheet.LastRowNum; row++)
+            for (int row = 853; row <= sheet.LastRowNum; row++)
             {
                 var currentRow = sheet.GetRow(row);
 
@@ -111,7 +111,7 @@ namespace ApiServer
                 if(db.Devices.Count(x => x.BrandName == brend && x.Model == code) > 0) continue;
 
                 //TODO: Ниже место для кода парсинга перменной name
-                Regex reg = new Regex(@"\w+");
+                Regex reg = new Regex(@"\S+");
                 MatchCollection mc = reg.Matches(info);
                 string[] m = new string[mc.Count];
 
@@ -129,7 +129,7 @@ namespace ApiServer
                     int w = 0;
                     for (; i < m.Length; i++)
                     {
-                        if(Regex.IsMatch(m[i], @"(\d+)W"))
+                        if(Regex.IsMatch(m[i], @"^(\d+)W$"))
                         {
                            w = int.Parse(Regex.Replace(m[i], "W", ""));
                         }
@@ -316,7 +316,7 @@ namespace ApiServer
                     string addInfo = "";
                     int i = 3;
                     string socket = "";
-                    double d = 0;
+                    string d = "0";
 
                     for (; i < m.Length; i++)
                     {
@@ -339,7 +339,7 @@ namespace ApiServer
                     {
                         if (Regex.IsMatch(m[i], "\\d\\.\\d\""))
                         {
-                            d = int.Parse(Regex.Replace(m[i], "\"", ""));
+                            d = Regex.Replace(m[i], "\"", "");
                         }
                         else
                         {
@@ -372,7 +372,7 @@ namespace ApiServer
                         Value2 = price,
                         Value3 = volume,
                         Value4 = weight,
-                        Value5 = d.ToString()
+                        Value5 = d
                     };
 
                     db.Characteristic.Add(c);
@@ -508,11 +508,11 @@ namespace ApiServer
                         }
                         else if (Regex.IsMatch(m[i], @"(\d+)xIEEE1394\(4p\)"))
                         {
-                            countI4p = int.Parse(Regex.Replace(m[i], "IEEE1394\\(4p\\)", ""));
+                            countI4p = int.Parse(Regex.Replace(m[i], "xIEEE1394\\(4p\\)", ""));
                         }
                         else if (Regex.IsMatch(m[i], @"(\d+)xIEEE1394\(6p\)"))
                         {
-                            countI6p = int.Parse(Regex.Replace(m[i], "IEEE1394\\(6p\\)", ""));
+                            countI6p = int.Parse(Regex.Replace(m[i], "xIEEE1394\\(6p\\)", ""));
                         }
                         else
                         {
@@ -655,7 +655,7 @@ namespace ApiServer
 
                     db.SaveChanges();
                     
-                    if (countSata > 0) SetSocketsForDevice(brend, code, "SATA", countSata);
+                    if (countSata > 0) SetSocketsForDevice(brend, code, "E-SATA", countSata);
                     if (countUsb2 > 0) SetSocketsForDevice(brend, code, "USB2.0", countUsb2);
                     if (countUsb3 > 0) SetSocketsForDevice(brend, code, "USB3.0", countUsb3);
                 }

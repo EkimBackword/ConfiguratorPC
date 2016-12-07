@@ -61,8 +61,25 @@ namespace ApiServer.Controllers
 
             List<List<string>> t = new List<List<string>>();
 
+            string[] s = null;
+            if (value.motherboard != null || value.coolingSystem != null)
+                s = (from dtt in db.DeviceToType
+                     from tp in db.Types
+                     where dtt.IdDevice == (value.motherboard ?? value.coolingSystem) && dtt.IdType == tp.IdType
+                     select tp.Name).ToArray();
+
             foreach(var i in v)
             {
+                if (value.motherboard != null || value.coolingSystem != null)
+                {
+                    string tmp = (from dtt in db.DeviceToType
+                                  from tp in db.Types
+                                  where dtt.IdDevice == i.IdDevice && dtt.IdType == tp.IdType
+                                  select tp.Name).Single();
+
+                    if (Array.IndexOf(s, tmp) == -1) continue;
+                }
+
                 List<string> d = new List<string>();
                 d.Add(i.IdDevice.ToString());
                 d.Add(i.BrandName);

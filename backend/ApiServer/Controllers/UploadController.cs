@@ -29,6 +29,9 @@ namespace ApiServer.Controllers
                     ContractResolver = new CamelCasePropertyNamesContractResolver()
                 });
 
+                Parser p = Parser.GetInstance();
+                p.Read(@"Прайслист_Мерлион_Москва.xlsm", "Price List");
+
                 var response = Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent(content, Encoding.UTF8, "application/json");
                 return response;

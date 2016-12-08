@@ -18,26 +18,26 @@ namespace ApiServer.Controllers
             Entities e = db.Entities.Where(x => x.NameOfEntity == "Корпус").Single();
 
             if (e.Name1 != null) result.Add(e.Name1);
-            if (e.Name1 != null) result.Add(e.Name2);
-            if (e.Name1 != null) result.Add(e.Name3);
-            if (e.Name1 != null) result.Add(e.Name4);
-            if (e.Name1 != null) result.Add(e.Name5);
-            if (e.Name1 != null) result.Add(e.Name6);
-            if (e.Name1 != null) result.Add(e.Name7);
-            if (e.Name1 != null) result.Add(e.Name8);
-            if (e.Name1 != null) result.Add(e.Name9);
-            if (e.Name1 != null) result.Add(e.Name10);
-            if (e.Name1 != null) result.Add(e.Name11);
-            if (e.Name1 != null) result.Add(e.Name12);
-            if (e.Name1 != null) result.Add(e.Name13);
-            if (e.Name1 != null) result.Add(e.Name14);
-            if (e.Name1 != null) result.Add(e.Name15);
+            if (e.Name2 != null) result.Add(e.Name2);
+            if (e.Name3 != null) result.Add(e.Name3);
+            if (e.Name4 != null) result.Add(e.Name4);
+            if (e.Name5 != null) result.Add(e.Name5);
+            if (e.Name6 != null) result.Add(e.Name6);
+            if (e.Name7 != null) result.Add(e.Name7);
+            if (e.Name8 != null) result.Add(e.Name8);
+            if (e.Name9 != null) result.Add(e.Name9);
+            if (e.Name10 != null) result.Add(e.Name10);
+            if (e.Name11 != null) result.Add(e.Name11);
+            if (e.Name12 != null) result.Add(e.Name12);
+            if (e.Name13 != null) result.Add(e.Name13);
+            if (e.Name14 != null) result.Add(e.Name14);
+            if (e.Name15 != null) result.Add(e.Name15);
 
             return result;
         }
 
         // POST: api/body
-        public IEnumerable<IEnumerable<string>> Post([FromBody]string value)
+        public IEnumerable<IEnumerable<string>> Post(JsonDataModel value)
         {
             var v = from entity in db.Entities
                     from device in db.Devices
@@ -59,10 +59,27 @@ namespace ApiServer.Controllers
 
             List<List<string>> t = new List<List<string>>();
 
+            string s = null;
+            if (value.motherboard != null)
+                s = (from d in db.Devices
+                     from c in db.Characteristic
+                     where d.IdDevice == value.motherboard && d.IdCharacteristic == c.IdCharacteristic
+                     select c.Value6).Single();
+
             foreach (var i in v)
             {
+                if (value.motherboard != null)
+                {                    
+                    string tmp = (from dr in db.Devices
+                         from c in db.Characteristic
+                         where dr.IdDevice == i.IdDevice && dr.IdCharacteristic == c.IdCharacteristic
+                         select c.Value5).Single();
+
+                    if (!s.Equals(tmp)) continue;
+                }
+
                 List<string> d = new List<string>();
-                d.Add("" + i.IdDevice);
+                d.Add(i.IdDevice.ToString());
                 d.Add(i.BrandName);
                 d.Add(i.Model);
                 d.Add(i.Value1);

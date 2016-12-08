@@ -61,7 +61,7 @@ namespace ApiServer.Controllers
 
             string[] s = null;
             string st = null;
-            if (value.motherboard != null || value.CPU != null)
+            if (value.motherboard != -1 || value.CPU != -1)
             {
                 s = (from dtt in db.DeviceToType
                      from tp in db.Types
@@ -80,7 +80,7 @@ namespace ApiServer.Controllers
 
             foreach (var i in v)
             {
-                if (value.motherboard != null || value.CPU != null)
+                if (value.motherboard != -1 || value.CPU != -1)
                 {
                     string[] tmp = (from dtt in db.DeviceToType
                                   from tp in db.Types

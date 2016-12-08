@@ -63,7 +63,7 @@ namespace ApiServer.Controllers
 
             string[] s1 = null;
 
-            if (value.CPU != null || value.coolingSystem != null)
+            if (value.CPU != -1 || value.coolingSystem != -1)
             {
                 s1 = (from dtt in db.DeviceToType
                       from tp in db.Types
@@ -72,14 +72,14 @@ namespace ApiServer.Controllers
             }
 
             string s2 = null;
-            if (value.body != null)
+            if (value.body != -1)
                 s2 = (from d in db.Devices
                      from c in db.Characteristic
                      where d.IdDevice == value.body && d.IdCharacteristic == c.IdCharacteristic
                      select c.Value5).Single();
 
             string[] s3 = null;
-            if (value.RAM != null)
+            if (value.RAM != -1)
                 s3 = (from dtt in db.DeviceToType
                      from tp in db.Types
                      where dtt.IdDevice == value.RAM && dtt.IdType == tp.IdType
@@ -87,7 +87,7 @@ namespace ApiServer.Controllers
 
             foreach (var i in v)
             {
-                if (value.CPU != null || value.coolingSystem != null)
+                if (value.CPU != -1 || value.coolingSystem != -1)
                 {
                     string[] tmp = (from dtt in db.DeviceToType
                                     from tp in db.Types
@@ -107,7 +107,7 @@ namespace ApiServer.Controllers
                     if (Array.IndexOf(s1, st) == -1) continue;
                 }
 
-                if (value.body != null)
+                if (value.body != -1)
                 {
                     string tmp = (from dr in db.Devices
                                   from c in db.Characteristic
@@ -117,7 +117,7 @@ namespace ApiServer.Controllers
                     if (!s2.Equals(tmp)) continue;
                 }
 
-                if (value.RAM != null)
+                if (value.RAM != -1)
                 {
                     string tmp = (from dtt in db.DeviceToType
                                   from tp in db.Types

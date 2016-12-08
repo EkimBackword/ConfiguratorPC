@@ -60,7 +60,7 @@ namespace ApiServer.Controllers
             List<List<string>> t = new List<List<string>>();
 
             string s = null;
-            if (value.motherboard != null)
+            if (value.motherboard != -1)
                 s = (from d in db.Devices
                      from c in db.Characteristic
                      where d.IdDevice == value.motherboard && d.IdCharacteristic == c.IdCharacteristic
@@ -68,7 +68,7 @@ namespace ApiServer.Controllers
 
             foreach (var i in v)
             {
-                if (value.motherboard != null)
+                if (value.motherboard != -1)
                 {                    
                     string tmp = (from dr in db.Devices
                          from c in db.Characteristic

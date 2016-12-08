@@ -62,7 +62,7 @@ namespace ApiServer.Controllers
             List<List<string>> t = new List<List<string>>();
 
             string[] s = null;
-            if (value.motherboard != null || value.coolingSystem != null)
+            if (value.motherboard != -1 || value.coolingSystem != -1)
                 s = (from dtt in db.DeviceToType
                      from tp in db.Types
                      where dtt.IdDevice == (value.motherboard ?? value.coolingSystem) && dtt.IdType == tp.IdType
@@ -70,7 +70,7 @@ namespace ApiServer.Controllers
 
             foreach(var i in v)
             {
-                if (value.motherboard != null || value.coolingSystem != null)
+                if (value.motherboard != -1 || value.coolingSystem != -1)
                 {
                     string tmp = (from dtt in db.DeviceToType
                                   from tp in db.Types

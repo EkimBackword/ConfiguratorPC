@@ -65,7 +65,7 @@ namespace ApiServer.Controllers
             {
                 s = (from dtt in db.DeviceToType
                      from tp in db.Types
-                     where dtt.IdDevice == (value.motherboard ?? value.CPU) && dtt.IdType == tp.IdType
+                     where dtt.IdDevice == (value.motherboard != -1 ? value.motherboard : value.CPU) && dtt.IdType == tp.IdType
                      select tp.Name).ToArray();
                 
                 for (int i = 0; i < s.Length; i++)

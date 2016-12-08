@@ -65,7 +65,7 @@ namespace ApiServer.Controllers
             if (value.motherboard != -1 || value.coolingSystem != -1)
                 s = (from dtt in db.DeviceToType
                      from tp in db.Types
-                     where dtt.IdDevice == (value.motherboard ?? value.coolingSystem) && dtt.IdType == tp.IdType
+                     where dtt.IdDevice == (value.motherboard != -1 ? value.motherboard : value.coolingSystem) && dtt.IdType == tp.IdType
                      select tp.Name).ToArray();
 
             foreach(var i in v)

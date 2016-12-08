@@ -67,7 +67,7 @@ namespace ApiServer.Controllers
             {
                 s1 = (from dtt in db.DeviceToType
                       from tp in db.Types
-                      where dtt.IdDevice == (value.CPU ?? value.coolingSystem) && dtt.IdType == tp.IdType
+                      where dtt.IdDevice == (value.CPU != -1 ? value.CPU : value.coolingSystem) && dtt.IdType == tp.IdType
                       select tp.Name).ToArray();
             }
 

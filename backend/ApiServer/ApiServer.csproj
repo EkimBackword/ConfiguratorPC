@@ -172,7 +172,6 @@
     <Compile Include="Controllers\bodyController.cs" />
     <Compile Include="Controllers\coolingSystemController.cs" />
     <Compile Include="Controllers\CPUController.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HDDController.cs" />
     <Compile Include="Controllers\motherboardController.cs" />
     <Compile Include="Controllers\PowerController.cs" />

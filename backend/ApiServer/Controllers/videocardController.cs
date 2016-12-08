@@ -37,7 +37,7 @@ namespace ApiServer.Controllers
         }
 
         // POST: api/videocard
-        public IEnumerable<IEnumerable<string>> Post([FromBody]string value)
+        public IEnumerable<IEnumerable<string>> Post(JsonDataModel value)
         {
             var v = from entity in db.Entities
                     from device in db.Devices

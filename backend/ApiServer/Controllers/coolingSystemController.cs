@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Text.RegularExpressions;
 
 namespace ApiServer.Controllers
 {
@@ -37,7 +38,7 @@ namespace ApiServer.Controllers
         }
 
         // POST: api/coolingSystem
-        public IEnumerable<IEnumerable<string>> Post([FromBody]string value)
+        public IEnumerable<IEnumerable<string>> Post(JsonDataModel value)
         {
             var v = from entity in db.Entities
                     from device in db.Devices
@@ -58,8 +59,37 @@ namespace ApiServer.Controllers
 
             List<List<string>> t = new List<List<string>>();
 
+            string[] s = null;
+            string st = null;
+            if (value.motherboard != null || value.CPU != null)
+            {
+                s = (from dtt in db.DeviceToType
+                     from tp in db.Types
+                     where dtt.IdDevice == (value.motherboard ?? value.CPU) && dtt.IdType == tp.IdType
+                     select tp.Name).ToArray();
+                
+                for (int i = 0; i < s.Length; i++)
+                {
+                    if (Regex.IsMatch(s[i], @"Socket-\w+"))
+                    {
+                        st = s[i];
+                        break;
+                    }
+                }
+            }
+
             foreach (var i in v)
             {
+                if (value.motherboard != null || value.CPU != null)
+                {
+                    string[] tmp = (from dtt in db.DeviceToType
+                                  from tp in db.Types
+                                  where dtt.IdDevice == i.IdDevice && dtt.IdType == tp.IdType
+                                  select tp.Name).ToArray();
+
+                    if (Array.IndexOf(tmp, st) == -1) continue;
+                }
+
                 List<string> d = new List<string>();
                 d.Add(i.IdDevice.ToString());
                 d.Add(i.BrandName);

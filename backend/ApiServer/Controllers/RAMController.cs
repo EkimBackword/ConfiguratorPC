@@ -37,7 +37,7 @@ namespace ApiServer.Controllers
         }
 
         // POST: api/RAM
-        public IEnumerable<IEnumerable<string>> Post([FromBody]string value)
+        public IEnumerable<IEnumerable<string>> Post(JsonDataModel value)
         {
             var v = from entity in db.Entities
                     from device in db.Devices
@@ -58,8 +58,25 @@ namespace ApiServer.Controllers
 
             List<List<string>> t = new List<List<string>>();
 
+            string[] s = null;
+            if (value.motherboard != null)
+                s = (from dtt in db.DeviceToType
+                     from tp in db.Types
+                     where dtt.IdDevice == value.motherboard && dtt.IdType == tp.IdType
+                     select tp.Name).ToArray();
+
             foreach (var i in v)
             {
+                if (value.motherboard != null)
+                {
+                    string tmp = (from dtt in db.DeviceToType
+                                  from tp in db.Types
+                                  where dtt.IdDevice == i.IdDevice && dtt.IdType == tp.IdType
+                                  select tp.Name).Single();
+
+                    if (Array.IndexOf(s, tmp) == -1) continue;
+                }
+
                 List<string> d = new List<string>();
                 d.Add(i.IdDevice.ToString());
                 d.Add(i.BrandName);

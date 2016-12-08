@@ -29,23 +29,18 @@
     <div class="title">
         <h2>Мой ПК</h2>
     </div>
-
-
     <div class="PC--items">
-
         <div *ngIf="pc.CPU" class="PC--item">
             <div class="text">
                 <h3>Процессор:</h3>
                 {{pc.CPU.model}} / {{pc.CPU.type}} - {{pc.CPU.price}} руб.
             </div>
-
             <div class="actions">
                 <button md-mini-fab (click)="del('CPU')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
         </div>
-
         <div *ngIf="pc.motherboard" class="PC--item">
             <div class="text">
                 <h3>Материнская:</h3>
@@ -53,14 +48,12 @@
                     {{pc.motherboard.model}} / {{pc.motherboard.type}} - {{pc.motherboard.price}} руб.
                 </div>
             </div>
-
             <div class="actions">
                 <button md-mini-fab (click)="del('motherboard')">
                     <md-icon svgSrc="../../assets/ic_close_black_1024px.svg"></md-icon>
                 </button>
             </div>
         </div>
-
         <div *ngIf="pc.RAM" class="PC--item">
             <div class="text">
                 <h3>Оперативная:</h3>
@@ -74,7 +67,6 @@
                 </button>
             </div>
         </div>
-
         <div *ngIf="pc.videocard" class="PC--item">
             <div class="text">
                 <h3>Видеокарта:</h3>
@@ -88,7 +80,6 @@
                 </button>
             </div>
         </div>
-
         <div *ngIf="pc.Power" class="PC--item">
             <div class="text">
                 <h3>Блок:</h3>
@@ -102,7 +93,6 @@
                 </button>
             </div>
         </div>
-
         <div *ngIf="pc.HDD" class="PC--item">
             <div class="text">
                 <h3>Жёсткий:</h3>
@@ -116,7 +106,6 @@
                 </button>
             </div>
         </div>
-
         <div *ngIf="pc.body" class="PC--item">
             <div class="text">
                 <h3>Корпус:</h3>
@@ -130,7 +119,6 @@
                 </button>
             </div>
         </div>
-
         <div *ngIf="pc.coolingSystem" class="PC--item">
             <div class="text">
                 <h3>Охлаждение:</h3>
@@ -144,7 +132,6 @@
                 </button>
             </div>
         </div>
-
         <div *ngIf="pc.accessories" class="PC--item">
             <div class="text">
                 <h3>Аксессуары:</h3>
@@ -158,13 +145,7 @@
                 </button>
             </div>
         </div>
-
     </div>
-
-
-    
-
-
     <div class="bottom">
         <div class="price">
             <h3>Цена</h3>

@@ -3,8 +3,6 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { Configurator } from './configurator.model';
-
 @Injectable()
 export class ConfiguratorService {
 
